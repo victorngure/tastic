@@ -37,14 +37,14 @@ session_start();
             <div class="menu">
                 <div class="container">
                     <div class="logo">
-                        <a href="index.html" title="">
+                        <a href="index.php" title="">
                             <i class="fa fa-home"></i>
                             <span>Tastic</span>
                             <strong>REALTORS</strong>
                         </a>
                     </div><!-- LOGO -->
                     <div class="popup-client">
-                        <span><?php if(isset( $_SESSION['username'])) { echo '<a class="link" href="logout.php">'.$_SESSION['username']. ' | Logout </a> '; } else 
+                        <span><?php if(isset( $_SESSION['username'])) { echo 'Logout </a> '; } else 
                          { echo '<a class="link" href="login.php"> Sign Up | Login </a>'; }?> </span>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
@@ -157,7 +157,7 @@ if ($result) {
                                         echo '<div class="col-md-4">';
                                         echo'<div class="properties-box">';
                                         echo '<div class="properties-thumb">';
-                                        echo'<a href="property.php?propertyId=' . $id . '"><img src= "uploads/'.$image.'" width="275" height="265" style=";"></a>'; 
+                                        echo'<a href="property.php?propertyId=' . $id . '"><img src= "uploads/'.$image.'" width="100%" height="265"></a>'; 
                                         echo '<span class="spn-status"> For ' . $status . '</span>';
                                         echo '<ul class="property-info">';                                   
                                         echo '<li class="li-rl"></li>';

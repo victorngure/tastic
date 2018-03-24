@@ -16,8 +16,7 @@ if (isset($_REQUEST['username']))
         VALUES ('$username', '".md5($password)."', '$email', '". mysqli_real_escape_string($connection, $hash)."')";
         $result = mysqli_query($connection,$query);
         if($result){
-            echo "<div class='form'>
-<h3>You are registered successfully.</h3>";
+            header("Location: index.php");
         }
 }
 ?>

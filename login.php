@@ -50,6 +50,9 @@
                                         <input type="password" placeholder="Password" />
                                     </div>
                                     <div class="field">
+                                        <?php include("log.php") ?>
+                                    </div>
+                                    <div class="field">
                                         <input type="submit" value="SEND NOW" class="flat-btn" />
                                     </div>
                                 </form>

@@ -21,9 +21,7 @@ if (isset($_POST['username'])){
             // Redirect user to index.php
         header("Location: index.php");
          }else{
-    echo "
-<h3>Username/password is incorrect.</h3>
- <h4>Kindly try loggin in again /h4>";
+    echo '<p style=:color:red:>Username/password is incorrect. Kindly try login in again </p>';
     }
     }
     ?>  

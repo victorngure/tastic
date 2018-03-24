@@ -44,7 +44,8 @@ include('auth.php');
                         </a>
                     </div><!-- LOGO -->
                     <div class="popup-client">
-                        <span><?php if(isset( $_SESSION['username'])) { echo '<a class="link" href="logout.php">'.$_SESSION['username']. ' | Logout </a> '; } else 
+                        <v class="popup-client">
+                        <span><?php if(isset( $_SESSION['username'])) { echo 'Logout </a> '; } else 
                          { echo '<a class="link" href="login.php"> Sign Up | Login </a>'; }?> </span>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
@@ -114,7 +115,7 @@ include('auth.php');
             <div class="container agnet-prop">
                 <div class="row">                    
                         <div class="submit-content">
-                            <form id="profile_form" name="profile_form" class="form profile-form" action="updateProfile.php">
+                            <form id="profile_form" name="profile_form" class="form profile-form" action="updateProfile.php" enctype="multipart/form-data" method="post">
                                 <div class="control-group">
                                     <div class="group-title">How to reach you</div>
                                     <div class="group-container row">                                       
@@ -133,6 +134,7 @@ include('auth.php');
                                                 $facebook =$rs['facebook'];
                                                 $twitter =$rs['twitter'];
                                                 $youtube =$rs['youtube'];
+                                                $userPhoto = $rs['userPhoto'];
                                             }
                                             ?>
 
@@ -172,6 +174,14 @@ include('auth.php');
                                    
                                 </div>
                                 <div class="control-group">
+                                    <div class="group-title">
+                                    Agent/Agency Photo
+                                    </div>
+                                    <?php echo '<img id="agentPic" src= "userPhotos/'.$userPhoto.'" width="20%" height="28%" style="float:right;">';?>
+                                    <div class="group-container row">
+                                    <input type="file" name="fileToUpload"  id="fileToUpload"> 
+                                    </div>
+                                <div class="control-group">
                                     <div class="group-title">Social Media</div>
                                     <div class="group-container row">
                                         <div class="col-md-6">
@@ -191,7 +201,8 @@ include('auth.php');
                                                 <label for="linkedin">Youtube Url</label>
                                                 <?php echo '<input class="form-control" value="'.$youtube.'" name="youtube" type="text">';?>
                                             </div> 
-                                            </div>                                        
+                                            </div>  
+
                                         <div class="col-md-12">
                                             <div class="submit">
                                                 <input class="btn flat-btn" id="profile_submit" value="Next" type="submit">
@@ -199,7 +210,10 @@ include('auth.php');
                                         </div>
                                     </div>
                                 </div>
-                            </fo rm>
+
+                                    </div>   
+                                </div>
+                            </form>
                         </div>
 
                     </div>
@@ -289,6 +303,7 @@ include('auth.php');
     </div>
 
     <!-- Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/modernizr.js"></script><!-- Modernizer -->
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script><!-- Jquery -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script><!-- Bootstrap -->
@@ -303,6 +318,25 @@ include('auth.php');
     <script type="text/javascript" src="js/markerclusterer.js"></script>
 
     <script type="text/javascript" src="js/property_map.js"></script>
+
+    <script type="text/javascript">
+        function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#agentPic').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#fileToUpload").change(function() {
+  readURL(this);
+});
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function () {

@@ -61,14 +61,15 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
             <div class="menu">
                 <div class="container">
                     <div class="logo">
-                        <a href="index.html" title="">
+                        <a href="index.php" title="">
                            <i class="fa fa-home"></i>
                             <span>Tastic</span>
                             <strong>REALTORS</strong>
                         </a>
                     </div><!-- LOGO -->
                     <div class="popup-client">
-                        <span><i class="fa fa-user"></i> / Signup</span>
+                        <span><?php if(isset( $_SESSION['username'])) { echo ' <a class="link" href="logout.php">Logout </a> '; } else 
+                         { echo '<a class="link" href="login.php"> Sign Up | Login </a>'; }?> </span>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
                     <nav>
@@ -117,7 +118,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                      while ($rs=mysqli_fetch_assoc($result)) {
                                                         $image=$rs['image'];
                                                         echo '<li data-thumb="uploads/'.$image.'">';
-                                                           echo '<img src="uploads/'.$image.'" alt="kwitara" width="800" height = "500"/>';
+                                                           echo '<img src="uploads/'.$image.'" alt="kwitara" width="100%"/>';
                                                        echo '</li>'; 
                                                         }
                                                         ?>
@@ -193,7 +194,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                              if ($propertyVideo == null && $propertyVideo ==""){
                                              	echo '<h5> This property has no video </h5>';
                                              }else
-                                             echo'<iframe height="400" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media></iframe>';?>
+                                             echo'<iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media></iframe>';?>
                                        </div>
 <!-- 
                                         <div class="property-map">

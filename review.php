@@ -3,9 +3,9 @@
 session_start();
 ?>
 <?php 
+if(isset($_SESSION['propertyId'])){
 include('DBconnect.php');
  {
-    $id = $_SESSION['propertyId'];
  $result = mysqli_query($connection,"SELECT * FROM properties p WHERE p.propertyId = $id")
  or die(mysqli_error($connection)); 
     while ($rs=mysqli_fetch_assoc($result)) {
@@ -21,6 +21,10 @@ include('DBconnect.php');
         $propertyArea =$rs['propertyArea'];
         $agentId =$rs['agentId'];
     }
+}
+}
+else{
+    header("Location:addListing.php");
 }
 ?>
 <!DOCTYPE html>
