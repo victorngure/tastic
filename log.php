@@ -20,8 +20,9 @@ if (isset($_POST['username'])){
         $_SESSION['username'] = $username;
             // Redirect user to index.php
         header("Location: index.php");
-         }else{
-    echo '<p style=:color:red:>Username/password is incorrect. Kindly try login in again </p>';
-    }
-    }
+         }else{ 
+         echo '<script type="text/javascript">
+                document.getElementById("wrongPass").innerHTML = " Username/password is incorrect. Kindly try login in again ";
+        </script>';
+      }    }
     ?>  

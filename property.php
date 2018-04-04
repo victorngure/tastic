@@ -117,7 +117,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                     or die(mysqli_error($connection)); 
                                                      while ($rs=mysqli_fetch_assoc($result)) {
                                                         $image=$rs['image'];
-                                                        echo '<li data-thumb="uploads/'.$image.'">';
+                                                        echo '<li data-thumb="uploads/'.$image.'" >';
                                                            echo '<img src="uploads/'.$image.'" alt="kwitara" width="100%"/>';
                                                        echo '</li>'; 
                                                         }
@@ -185,16 +185,21 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
 
                                             </div>
                                         </div>
-
-                                        <div class="property-video">
-                                            <div class="heading3">
-                                                <h3>Property Video </h3> 
-                                            </div>
-                                             <?php 
+                                            <?php 
                                              if ($propertyVideo == null && $propertyVideo ==""){
-                                             	echo '<h5> This property has no video </h5>';
+                                                echo '
+                                                <div>
+                                                <div class="heading3">
+                                                <h3>Property Video </h3> 
+                                                </div>
+                                                <h5> This property has no video </h5>';
                                              }else
-                                             echo'<iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media></iframe>';?>
+                                                echo'
+                                                <div class="property-video">
+                                                <div class="heading3">
+                                                <h3>Property Video </h3> 
+                                                </div>
+                                                <iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media alt="This property has no video"></iframe>';?>
                                        </div>
 <!-- 
                                         <div class="property-map">
@@ -218,14 +223,20 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
     								$facebook=$rs['facebook'];
     								$twitter=$rs['twitter'];
     								$youtube=$rs['youtube'];
-    								$userImage=$rs['userImage'];
+    								$userPhoto=$rs['userPhoto'];
     							}
                             	?>
                                 <div class="agent_bg_widget widget"> 
                                     <div class="agent_widget">
                                         <div class="agent_pic">
                                             <a href="agent.html" title="">
-                                                <img src="img/demo/man1.jpg" alt="" />
+                                               <?php 
+                                                if($userPhoto == null || $userPhoto == ""){
+                                                echo '
+                                                <img src="userPhotos/noImage.png" alt="No Image" style="max-width: 70%;"/>';}
+                                                else{
+                                                    echo '
+                                                    <img src="userPhotos/'.$userPhoto.'" alt="No Image" style="max-width: 70%;"/>';} ?>
                                                 <h5><?php echo $userName?></h5> 
                                             </a>
                                         </div>   
@@ -282,7 +293,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                         <div class="col-md-12">
                                                             <label>
                                                                 <i class="fa fa-pencil"></i>
-                                                                <textarea placeholder="Your Message" style="color: black">Hello, I found your listing on JUMIA HOUSE. Please send me more information about Tree Tops Apartments, Peponi Road, Peponi Road. Thank you.</textarea>
+                                                                <textarea placeholder="Your Message" style="color: black">Hello, I found your listing on TASTIC REALTORS. Please send me more information about Tree Tops Apartments, Peponi Road, Peponi Road. Thank you.</textarea>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-12">
@@ -546,6 +557,23 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
             });
         });
     </script>
+    <script>
+$(function () {
+
+    $("iframe").not(":has([src])").each(function () {
+
+    var ifrm = this;
+
+    ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+
+    ifrm.document.open();
+    ifrm.document.write($(this).attr("alt"));
+    ifrm.document.close();
+
+    });
+
+});
+</script>
 
     <?php
     $id = $_GET ['propertyId'];

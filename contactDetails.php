@@ -177,7 +177,9 @@ include('auth.php');
                                     <div class="group-title">
                                     Agent/Agency Photo
                                     </div>
-                                    <?php echo '<img id="agentPic" src= "userPhotos/'.$userPhoto.'" width="20%" height="28%" style="float:right;">';?>
+                                    <?php 
+                                    echo '<img id="agentPic" src= "userPhotos/'.$userPhoto.'" width="20%" height="28%" style="float:right;" alt="No Image">';
+                                    ?>
                                     <div class="group-container row">
                                     <input type="file" name="fileToUpload"  id="fileToUpload"> 
                                     </div>
@@ -187,7 +189,9 @@ include('auth.php');
                                         <div class="col-md-6">
                                             <div class="form-group s-profile-facebook">
                                                 <label for="facebook">Facebook Url</label>
-                                                <?php echo '<input class="form-control" value="'.$facebook.'" name="facebook" type="text">';?>
+                                                <?php 
+                                                echo '<input class="form-control" value="'.$facebook.'" name="facebook" type="text">';
+                                                ?>
                                             </div>
                                             </div>
                                             <div class="col-md-6">

@@ -44,7 +44,6 @@ include('auth.php');
                         </a>
                     </div><!-- LOGO -->
                     <div class="popup-client">
-                        v class="popup-client">
                         <span><?php if(isset( $_SESSION['username'])) { echo 'Logout </a> '; } else 
                          { echo '<a class="link" href="login.php"> Sign Up | Login </a>'; }?> </span>
                     </div>
