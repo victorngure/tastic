@@ -24,13 +24,31 @@ session_start();
     <link rel="stylesheet" type="text/css" href="js/rs-plugin/css/settings.css">
     <style type="text/css">
     .virtecla-form-search{
-        background:url('nairobi4.jpg');
-        background-size: 100% 100%;
+        background-image: url('nairobi4.jpg');
+        background-size: cover;
     }
     .virtecal-search{
         bottom: 0;
         height: 74%;
         margin-bottom: 0; 
+    }
+    @media (max-width: 480px)  {        
+        #map_canvas{
+            display: none;
+        }
+    }
+    @media (max-width: 767px)  {        
+        #map_canvas{
+            display: none;
+        }
+    }
+    @media (max-width: 980px)  {        
+        #map_canvas{
+            background-image: url('nairobi4.jpg');
+            background-size: cover;
+            background-size: 100% 100%;
+            
+        }
     }
     </style>
 </head>
