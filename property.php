@@ -117,7 +117,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                     or die(mysqli_error($connection)); 
                                                      while ($rs=mysqli_fetch_assoc($result)) {
                                                         $image=$rs['image'];
-                                                        echo '<li data-thumb="uploads/'.$image.'">';
+                                                        echo '<li data-thumb="uploads/'.$image.'" >';
                                                            echo '<img src="uploads/'.$image.'" alt="kwitara" width="100%"/>';
                                                        echo '</li>'; 
                                                         }
@@ -185,16 +185,21 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
 
                                             </div>
                                         </div>
-
-                                        <div class="property-video">
-                                            <div class="heading3">
-                                                <h3>Property Video </h3> 
-                                            </div>
-                                             <?php 
+                                            <?php 
                                              if ($propertyVideo == null && $propertyVideo ==""){
-                                             	echo '<h5> This property has no video </h5>';
+                                                echo '
+                                                <div>
+                                                <div class="heading3">
+                                                <h3>Property Video </h3> 
+                                                </div>
+                                                <h5> This property has no video </h5>';
                                              }else
-                                             echo'<iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media></iframe>';?>
+                                                echo'
+                                                <div class="property-video">
+                                                <div class="heading3">
+                                                <h3>Property Video </h3> 
+                                                </div>
+                                                <iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media alt="This property has no video"></iframe>';?>
                                        </div>
 <!-- 
                                         <div class="property-map">
@@ -218,14 +223,20 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
     								$facebook=$rs['facebook'];
     								$twitter=$rs['twitter'];
     								$youtube=$rs['youtube'];
-    								$userImage=$rs['userImage'];
+    								$userPhoto=$rs['userPhoto'];
     							}
                             	?>
                                 <div class="agent_bg_widget widget"> 
                                     <div class="agent_widget">
                                         <div class="agent_pic">
                                             <a href="agent.html" title="">
-                                                <img src="img/demo/man1.jpg" alt="" />
+                                               <?php 
+                                                if($userPhoto == null || $userPhoto == ""){
+                                                echo '
+                                                <img src="userPhotos/noImage.png" alt="No Image" style="max-width: 70%;"/>';}
+                                                else{
+                                                    echo '
+                                                    <img src="userPhotos/'.$userPhoto.'" alt="No Image" style="max-width: 70%;"/>';} ?>
                                                 <h5><?php echo $userName?></h5> 
                                             </a>
                                         </div>   
@@ -282,7 +293,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                         <div class="col-md-12">
                                                             <label>
                                                                 <i class="fa fa-pencil"></i>
-                                                                <textarea placeholder="Your Message" style="color: black">Hello, I found your listing on JUMIA HOUSE. Please send me more information about Tree Tops Apartments, Peponi Road, Peponi Road. Thank you.</textarea>
+                                                                <textarea placeholder="Your Message" style="color: black">Hello, I found your listing on TASTIC REALTORS. Please send me more information about Tree Tops Apartments, Peponi Road, Peponi Road. Thank you.</textarea>
                                                             </label>
                                                         </div>
                                                         <div class="col-md-12">
@@ -292,107 +303,6 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                 </form>
                                             </div>
                                         </div>                         
-
-                                <div class="search_widget widget">
-                                    <div class="heading2">
-                                        <h3>SEARCH PROPERTIES</h3>
-                                    </div>
-                                    <div class="search-form"> 
-                                        <form action="http://htmldemo.kimarotec.net/Kwitara-Bootstrap-Real-Estate/html/dark/properties.html"  method="get" class="form-inline">   
-                                            <div class="search-form-content">
-                                                <div class="search-form-field">  
-                                                    <div class="form-group col-md-12">
-                                                        <div class="label-select">
-                                                            <select class="form-control" name="s_location">
-                                                                <option>All Locations</option>
-                                                                <option>Tokyo</option>
-                                                                <option>New Jersey</option>
-                                                                <option>New York</option>
-                                                                <option>Paris</option>
-                                                                <option>Marrakech</option>
-                                                                <option>lille</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <div class="label-select">
-                                                            <select class="form-control" name="s_sub_location"> 
-                                                                <option>All Sub-locations</option>
-                                                                <option>Central New York</option>
-                                                                <option>GreenVille</option>
-                                                                <option>Long Island</option>
-                                                                <option>New York City</option>
-                                                                <option>West Side</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <div class="label-select">  
-                                                            <select class="form-control" name="s_cat">
-                                                                <option>All Categories </option>
-                                                                <option>Apartment</option>
-                                                                <option>Load</option>
-                                                                <option>Office Building</option>
-                                                                <option>House</option>
-                                                                <option>Villa</option>
-                                                                <option>Retail</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <div class="label-select"> 
-                                                            <select class="form-control" name="s_statu">
-                                                                <option> All Status </option>
-                                                                <option>Open house</option>
-                                                                <option>Rent </option>
-                                                                <option>Boy</option>
-                                                                <option>used</option>  
-                                                            </select>
-                                                        </div>
-                                                    </div> 
-                                                    <div class="form-group col-md-12">
-                                                        <div class="label-select">
-                                                            <select class="form-control">
-                                                                <option>No. of Bedrooms</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <div class="label-select">
-                                                            <select class="form-control">
-                                                                <option>No. of Bed</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <span class="gprice-label">Price</span>
-                                                        <input type="text" class="span2" value="" data-slider-min="0" 
-                                                               data-slider-max="600" data-slider-step="5" 
-                                                               data-slider-value="[0,450]" id="price-range" >
-                                                    </div>
-                                                    <div class="form-group col-md-12">
-                                                        <span class="garea-label">Area</span> 
-                                                        <input type="text" class="span2" value="" data-slider-min="0" 
-                                                               data-slider-max="600" data-slider-step="5" 
-                                                               data-slider-value="[50,450]" id="property-geo" >
-                                                    </div>                                            
-                                                </div> 
-                                            </div>
-                                            <div class="search-form-submit">
-                                <button type="submit" class="btn-search">Search</button>
-                                            </div>
-                                        </form>
-                                    </div><!-- Services Sec -->
-                                </div><!-- Category Widget -->
                             </aside>
                         </div>
 
@@ -546,6 +456,23 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
             });
         });
     </script>
+    <script>
+$(function () {
+
+    $("iframe").not(":has([src])").each(function () {
+
+    var ifrm = this;
+
+    ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+
+    ifrm.document.open();
+    ifrm.document.write($(this).attr("alt"));
+    ifrm.document.close();
+
+    });
+
+});
+</script>
 
     <?php
     $id = $_GET ['propertyId'];

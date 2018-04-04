@@ -219,8 +219,7 @@
                                             </a>
                                         </div><!-- LOGO -->
                                             <h4>Login Form</h4>
-                                            <form action="log.php" name="registration" method="post">
-                                    
+                                            <form action="" method="post">                                    
                                             <div class="field">
                                                 <input type="text" placeholder="Username" name="username" />
                                             </div>
@@ -228,9 +227,41 @@
                                                 <input type="password" placeholder="Password" name="password" />
                                             </div>
                                             <div class="field">
-                                                <input type="submit" value="Login NOW" class="flat-btn" />
+                                                <p id="wrongPass" style="color: red"></p>
+                                            </div>
+                                            <div class="field">
+                                                <input type="submit" name="login" value="Login" class="flat-btn"/>
                                             </div>
                                         </form>
+                                        <?php
+                                    if(isset($_POST['login'])){
+                                        require('DBconnect.php');
+                                        session_start();
+                                        // If form submitted, insert values into the database.
+                                        if (isset($_POST['username'])){                                            
+                                            $username = stripslashes($_REQUEST['username']);
+                                            $username = mysqli_real_escape_string($connection,$username);
+                                            $password = stripslashes($_REQUEST['password']);
+                                            $password = mysqli_real_escape_string($connection,$password);
+
+                                            $query = "SELECT * FROM `users` WHERE userName='$username' and userPassword='".md5($password)."'";
+                                            $result = mysqli_query($connection,$query) or die(mysql_error());
+                                            $rows = mysqli_num_rows($result);
+                                            $rs = mysqli_fetch_array($result);
+                                            $userId=$rs['userId'];
+                                            $_SESSION['userId']=$userId;
+                                            if($rows==1){
+                                                $_SESSION['username'] = $username;
+                                                 // Redirect user to index.php
+                                                header("Location: index.php");
+                                            }else{                                                 
+                                                echo '<script type="text/javascript">
+                                                document.getElementById("wrongPass").innerHTML = " Username/password is incorrect. Kindly try login in again ";
+                                                </script>';
+                                             } 
+                                         }
+                                     }
+                                            ?>  
                                         <i>OR</i>
                                         <span>LOGIN WITH</span>
                                         <ul class="social-btns">
@@ -256,7 +287,7 @@
                                             <label>
                                                 <input type="checkbox" /> By Clicking on this You are agree with our <a href="#" title="">Terms & Condition</a>
                                             </label>
-                                            <input type="submit" value="Singup Now" class="flat-btn" />
+                                            <input type="submit" value="Singup" class="flat-btn" />
                                         </form>
                                     </div><!-- Registration sec -->
                                 </div>

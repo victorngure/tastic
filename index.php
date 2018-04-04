@@ -22,17 +22,41 @@ session_start();
 
     <!-- REVOLUTION STYLE SHEETS -->
     <link rel="stylesheet" type="text/css" href="js/rs-plugin/css/settings.css">
-
+    <style type="text/css">
+    .virtecla-form-search{
+        background-image: url('nairobi4.jpg');
+        background-size: cover;
+    }
+    .virtecal-search{
+        bottom: 0;
+        height: 74%;
+        margin-bottom: 0; 
+    }
+    @media (max-width: 480px)  {        
+        #map_canvas{
+            display: none;
+        }
+    }
+    @media (max-width: 767px)  {        
+        #map_canvas{
+            display: none;
+        }
+    }
+    @media (max-width: 980px)  {        
+        #map_canvas{
+            background-image: url('nairobi4.jpg');
+            background-size: cover;
+            background-size: 100% 100%;
+            
+        }
+    }
+    </style>
 </head>
 <body>
 
     <!-- /.preloader -->
     <div id="preloader"></div>
-    <div class="theme-layout">
-
-       
-
-        
+    <div class="theme-layout"> 
         <header class="simple-header for-sticky ">
             <div class="menu">
                 <div class="container">
@@ -44,7 +68,7 @@ session_start();
                         </a>
                     </div><!-- LOGO -->
                     <div class="popup-client">
-                        <span><?php if(isset( $_SESSION['username'])) { echo 'Logout </a> '; } else 
+                        <span ><?php if(isset( $_SESSION['username'])) { echo '<a class="link" href="logout.php" style="color: white;"> Logout </a> '; } else 
                          { echo '<a class="link" href="login.php"> Sign Up | Login </a>'; }?> </span>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
@@ -60,7 +84,7 @@ session_start();
                 </div>
             </div>
         </header>
-    <section class="virtecla-form-search" style="background:url('brick.jpeg');">
+    <section class="virtecla-form-search">
             <div id="map_canvas"></div>  
             <div class="virtecal-search">
                 <div class="search-form"> 
@@ -71,34 +95,54 @@ session_start();
                         <div class="search-form-content">
                             <div class="search-form-field">  
                                 <div class="form-group col-md-12">
-                                    <div >
-                                       <input type="text" name="" class="form-control" placeholder="Location" >
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-12">
                                     <div class="label-select">  
                                         <select class="form-control" name="s_cat">
-                                            <option>All Categories </option>
+                                            <option>Property Type</option>
                                             <option>Apartment</option>
-                                            <option>Load</option>
+                                            <option>House</option>
                                             <option>Office Building</option>
                                             <option>House</option>
                                             <option>Villa</option>
-                                            <option>Retail</option>
+                                            <option>Developments</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <div class="label-select"> 
                                         <select class="form-control" name="s_statu">
-                                            <option> All Status </option>
-                                            <option>Open house</option>
-                                            <option>Rent </option>
-                                            <option>Boy</option>
-                                            <option>used</option>  
+                                            <option>Property Status</option>
+                                            <option>For Sale</option>
+                                            <option>Open House</option>
+                                            <option>For Rent</option>
+                                            <option>For Sale</option>  
                                         </select>
                                     </div>
                                 </div> 
+                                <div class="form-group col-md-12">
+                                                        <div class="label-select">
+                                                            <select class="form-control" name="s_location">
+                                                                <option>All Locations</option>
+                                                                <option>Tokyo</option>
+                                                                <option>New Jersey</option>
+                                                                <option>New York</option>
+                                                                <option>Paris</option>
+                                                                <option>Marrakech</option>
+                                                                <option>lille</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="label-select">
+                                                            <select class="form-control" name="s_sub_location"> 
+                                                                <option>All Sub-locations</option>
+                                                                <option>Central New York</option>
+                                                                <option>GreenVille</option>
+                                                                <option>Long Island</option>
+                                                                <option>New York City</option>
+                                                                <option>West Side</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                 <div class="form-group col-md-12">
                                     <span class="gprice-label">Price</span>
                                     <input type="text" class="span2" value="" data-slider-min="0" 

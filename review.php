@@ -1,13 +1,10 @@
 <?php
-//Start session
 session_start();
-?>
-<?php 
-if(isset($_SESSION['propertyId'])){
-include('DBconnect.php');
- {
- $result = mysqli_query($connection,"SELECT * FROM properties p WHERE p.propertyId = $id")
- or die(mysqli_error($connection)); 
+if(isset($_SESSION['propertyId'])) {
+    $id = $_SESSION['propertyId'];
+    include('DBconnect.php');
+    $result = mysqli_query($connection,"SELECT * FROM properties p WHERE p.propertyId = $id")
+    or die(mysqli_error($connection)); 
     while ($rs=mysqli_fetch_assoc($result)) {
         $name=$rs['propertyTitle'];
         $price=$rs['propertyPrice'];
@@ -22,14 +19,11 @@ include('DBconnect.php');
         $agentId =$rs['agentId'];
     }
 }
-}
 else{
     header("Location:addListing.php");
 }
 ?>
 <!DOCTYPE html>
-
-<!-- Mirrored from htmldemo.kimarotec.net/Kwitara-Bootstrap-Real-Estate/html/dark/property.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Jan 2018 08:49:42 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,21 +97,21 @@ else{
                 <div class="col-xs-3 bs-wizard-step complete">
                   <div class="text-center bs-wizard-stepnum"><strong>Step 1</strong></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="addListing.php" class="bs-wizard-dot"></a>
                   <div class="bs-wizard-info text-center">Property Information</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum"><strong>Step 2</strong></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="contactDetails.php" class="bs-wizard-dot"></a>
                   <div class="bs-wizard-info text-center">Contact Details</div>
                 </div>
                 
                 <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
                   <div class="text-center bs-wizard-stepnum"><strong>Step 3</strong></div>
                   <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
+                  <a href="review.php" class="bs-wizard-dot"></a>
                   <div class="bs-wizard-info text-center">Preview</div>
                 </div>
                 
@@ -147,7 +141,7 @@ else{
                                                      while ($rs=mysqli_fetch_assoc($result)) {
                                                         $image=$rs['image'];
                                                         echo '<li data-thumb="uploads/'.$image.'">';
-                                                           echo '<img src="uploads/'.$image.'" alt="kwitara" width="800" height = "500"/>';
+                                                           echo '<img src="uploads/'.$image.'" alt="kwitara" width="100%"/>';
                                                        echo '</li>'; 
                                                         }
                                                         ?>
@@ -261,15 +255,21 @@ else{
                                     $facebook=$rs['facebook'];
                                     $twitter=$rs['twitter'];
                                     $youtube=$rs['youtube'];
-                                    $userImage=$rs['userImage'];
+                                    $userPhoto=$rs['userPhoto'];
                                 }
                                 ?>
                                 <div class="agent_bg_widget widget"> 
                                     <div class="agent_widget">
                                         <div class="agent_pic">
                                             <a href="agent.html" title="">
-                                                <img src="img/demo/man1.jpg" alt="" />
-                                                <?php echo  '
+                                                <?php 
+                                                if($userPhoto == null || $userPhoto == ""){
+                                                echo '
+                                                <img src="userPhotos/noImage.png" alt="No Image" style="max-width: 70%;"/>';}
+                                                else{
+                                                    echo '
+                                                    <img src="userPhotos/'.$userPhoto.'" alt="No Image" style="max-width: 70%;"/>';}                                           
+                                                echo '
                                                 <h5>'.$userName.'</h5> 
                                             </a>
                                         </div>   
