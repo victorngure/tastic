@@ -312,7 +312,7 @@ if ($result) {
                                 </div><!-- heading -->
                                 <ul>
                                     <li><a href="#" title=""><i class="fa fa-angle-right"></i> Home</a></li>
-                                    <li><a href="#" title=""><i class="fa fa-angle-right"></i> About us</a></li>
+                                    <li><a href="secondContactForm/form.php" title=""><i class="fa fa-angle-right"></i>SecondAttemptContact</a></li>
                                     <li><a href="sendEmailForm/secure_email_form.php" title=""><i class="fa fa-angle-right"></i> Contact</a></li> 
                                     <li><a href="Verification/index.php" title=""><i class="fa fa-angle-right"></i> Register</a></li> 
                                 </ul>
