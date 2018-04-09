@@ -16,7 +16,10 @@ if (isset($_REQUEST['username']))
         VALUES ('$username', '".md5($password)."', '$email', '". mysqli_real_escape_string($connection, $hash)."')";
         $result = mysqli_query($connection,$query);
         if($result){
-            header("Location: index.php");
+            echo '<script language="javascript">';
+            echo 'alert("Account created. Login to proceed")';
+            echo '</script>';
+            header("Location: login.php");
         }
 }
 ?>

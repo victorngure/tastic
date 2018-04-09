@@ -1,5 +1,27 @@
 <?php
 include('auth.php');
+include('DBconnect.php');
+ $id = $_GET ['propertyId'];
+if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['propertyId'] > 0)
+ {
+ $result = mysqli_query($connection,"SELECT * FROM properties WHERE propertyId = $id")
+ or die(mysqli_error($connection)); 
+    while ($rs=mysqli_fetch_assoc($result)) {
+        $name=$rs['propertyTitle'];
+        $price=$rs['propertyPrice'];
+        $propertyDescription=$rs['propertyDescription'];
+        $propertyArea =$rs['propertyArea'];
+        $propertyStatus=$rs['propertyStatus'];
+        $propertyType=$rs['propertyType'];
+        $bedrooms =$rs['bedrooms'];
+        $bathrooms =$rs['bathrooms'];
+        $propertyLocation =$rs['propertyLocation'];
+        $propertySublocation =$rs['propertySublocation'];
+        $propertyArea =$rs['propertyArea'];
+        $agentId = $rs['agentId'];
+        $propertyVideo = $rs['propertyVideo'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +40,7 @@ include('auth.php');
     <link rel="stylesheet" href="css/price-range.css" type="text/css" />
 
     <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="stylesheet" href="css/responsive.css" type="text/css" />	
+    <link rel="stylesheet" href="css/responsive.css" type="text/css" /> 
     <link rel="stylesheet" href="css/colors.css" type="text/css" />
     <link rel="stylesheet" href="css/colors.css" type="text/css" />
     <link rel="stylesheet" href="css/steps.css" type="text/css" />
@@ -63,7 +85,7 @@ include('auth.php');
 
 
         <div class="inner-head overlap">
-            <div style="background: url(img/parallax1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->	
+            <div style="background: url(img/parallax1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE --> 
             <div class="container">
                 <div class="inner-content">
                     <span><i class="ti ti-home"></i></span>
@@ -127,13 +149,13 @@ include('auth.php');
                                         <div class="col-md-12">
                                             <div class="form-group s-prop-title">
                                                 <label for="title">Title&nbsp;&#42;</label>
-                                                <input type="text" id="title" class="form-control" value="" name="title" required="">
+                                                <?php echo '<input type="text" id="title" class="form-control" value="'.$name.'" name="title" required="">';?>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group s-prop-desc">
                                                 <label for="textarea">Description&nbsp;&#42;</label>
-                                                <textarea id="textarea" name="desc" rows="10" required="" style="width: 100%;"></textarea>
+                                               <?php echo ' <textarea id="textarea" name="desc" rows="10" required="" style="width: 100%;">'.$propertyDescription.'</textarea>';?>
                                             </div>
                                         </div>
                                        
@@ -143,6 +165,7 @@ include('auth.php');
                                                 <label>Status</label>
                                                 <div class="dropdown label-select">
                                                     <select class="form-control" name="status">
+                                                        <?php echo '<option>'.$propertyStatus.'</option>'?>
                                                         <option>Sale</option>
                                                         <option>Open house</option>
                                                         <option>Rent</option>
@@ -155,7 +178,8 @@ include('auth.php');
                                             <div class="form-group s-prop-type">
                                                 <label>Type</label>
                                                 <div class="dropdown label-select">
-                                                    <select class="form-control" name="type">
+                                                     <select class="form-control" name="type">
+                                                        <?php echo '<option>'.$propertyType.'</option>'?>
                                                         <option>Apartment</option>
                                                         <option>Co-op</option>
                                                         <option>Condo</option>
@@ -167,37 +191,51 @@ include('auth.php');
                                          <div class="col-md-4">
                                             <div class="form-group s-prop-area">
                                                 <label for="area">Area&nbsp;(sqft)</label>
-                                                <input type="text" id="area" class="form-control" value="" name="area">
+                                                <?php echo '<input type="text" id="area" class="form-control" value="'.$propertyArea.'" name="area">'; ?>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group s-prop-bedrooms">
                                                 <label for="bedrooms">Bed Rooms</label>
-                                                <input type="text" id="bedrooms" class="form-control" value="" name="bedrooms">
+                                                <?php echo '<input type="text" id="bedrooms" class="form-control" value="'.$bedrooms.'" name="bedrooms">'; ?>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group s-prop-bathrooms">
                                                 <label for="bathrooms">Bath Rooms</label>
-                                                <input type="text" id="bathrooms" class="form-control" value="" name="bathrooms">
+                                                <?php echo '<input type="text" id="bathrooms" class="form-control" value='.$bathrooms.'"" name="bathrooms">'; ?>
                                             </div>
                                         </div>
                                                 <div class="col-md-5">
                                                     <label for="price">Price&nbsp;&#42;&nbsp;(&#36;)</label>
-                                                    <input type="text" id="price" class="form-control" value="" name="price" required="">
+                                                    <?php echo '<input type="text" id="price" class="form-control" value="'.$price.'" name="price" required="">'; ?>
                                                     <br>
                                                         <input type="checkbox" name="priceHide" value="Attic"><label>Hide Price</label>                                                   
                                                 </div>
-
-
                                 </div>
                                 <div class="control-group">
                                     <div class="group-title">Property Images</div>
                                     <div class="group-container row">
                                         <div class="form-container">
- 
- 
+                                        <?php
+include('DBconnect.php');
+ $id = $_GET ['propertyId'];
+ $_SESSION['propertyIdForEdit'] = $id;
+ $result = mysqli_query($connection,"SELECT * FROM images WHERE propertyId = $id") or die(mysqli_error($connection)); 
+while ($rs=mysqli_fetch_assoc($result)) {
+        $imageId = $rs['imageId'];
+        $image=$rs['image']; 
+        echo '<div class="col-md-4">';
+        echo '<div class="properties-box">';
+        echo '<div class="properties-thumb">';
+        echo '<img src= "uploads/'.$image.'" max-width="10px" max-height="5px">';
+        echo '<div class="user-preview">';
+        echo '<a class="col" href="deleteImage.php?imageId=' . $imageId . '">';
+        echo '<img alt="Delete Image" class="avatar avatar-small" src="remove3.png" title="Delete this image">';
+        echo '</a> </div></div></div></div>'; 
+    }
+    ?>
     <div class="add-more-cont"><a id="moreImg"><img src="img/add.png" height="25" width="25"> Click to add more than one image</a></div>
         <div class="input-files">
         <input type="file" name="image_upload-1">
@@ -364,37 +402,26 @@ return true;
                                         <div class="control-group small-group">
                                             <div class="group-title">Indoor Features</div>
                                             <div class="group-container row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-prop-property_feature_attic">
-                                                        <input type="checkbox" name="check_list[]" value="Attic"><label>Attic</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-prop-property_feature_basement">
-                                                       <input type="checkbox" name="check_list[]" value="Basement"><label>Basement</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-prop-property_feature_garden">
-                                                       <input type="checkbox" name="check_list[]" value="Garden"><label>Garden</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-prop-property_feature_alarm">
-                                                        <input type="checkbox" name="check_list[]" value="Alarm System"><label>Alarm System</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-prop-property_feature_solar">
-                                                       <input type="checkbox" name="check_list[]" value="Solar Panels"><label>Solar Panel</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group s-prop-property_feature_cctv">
-                                                        <input type="checkbox" name="check_list[]" value="CCTV"><label>CCTV</label>
-                                                    </div>
-                                                </div>
-                                                
+                                            <?php
+                                            $id = $_GET ['propertyId'];
+                                            $propertyFeatures = array("Attic", "Basement", "Garden", "Alarm System", "Solar Panels", "CCTV");
+                                            $result = mysqli_query($connection,"SELECT * FROM property_features WHERE propertyId = $id") or die(mysqli_error($connection)); 
+                                            while($row = $result->fetch_assoc()) {  
+                                                    $feature = $row['feature'];
+                                                    foreach ($propertyFeatures as $value) {
+                                                        if (strpos($feature, $value) !== FALSE) { // Yoshi version
+                                                            echo '<div class="col-md-6">';
+                                                            echo '<div class="form-group s-prop-property_feature_basement">';
+                                                            echo '<input type="checkbox" name="check_list[]" value="'.$feature.'" checked=""><label>'.$feature.'</label></div></div>';
+                                                        }
+                                                        else{
+                                                            echo '<div class="col-md-6">';
+                                                            echo '<div class="form-group s-prop-property_feature_basement">';
+                                                            echo '<input type="checkbox" name="check_list[]" value="'.$value.'"><label>'.$value.'</label></div></div>';
+                                                        }
+                                                    }
+                                            }
+                                            ?> 
                                             </div>
                                         </div>
                                     </div>
@@ -414,7 +441,7 @@ return true;
 
          <footer>
             <section class="top-line">
-                <div style="background: url(img/footer.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax blackish"></div><!-- PARALLAX BACKGROUND IMAGE -->	
+                <div style="background: url(img/footer.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax blackish"></div><!-- PARALLAX BACKGROUND IMAGE -->   
                 <div class="container">
                     <div class="row">                        
                         <div class="col-md-3 column">
