@@ -18,14 +18,14 @@ if(isset($_POST['submit']))
 {
 $email = trim($_POST['email']);
 $password = trim($_POST['password']);
-$query = "SELECT * FROM user WHERE email='$email' AND password='$password' AND com_code IS NULL";
+$query = "SELECT * FROM user WHERE email='$email' AND password='$password'";
 $result = mysqli_query($mysqli,$query)or die(mysqli_error());
 $num_row = mysqli_num_rows($result);
 $row=mysqli_fetch_array($result);
 if( $num_row ==1 )
 {
 $_SESSION['user_name']=$row['username'];
-header("Location: hope.php");
+header("Location: home.php");
 exit;
 }
 else

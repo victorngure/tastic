@@ -8,6 +8,8 @@
 
 <!-- Body Starts Here -->
 <body>
+    
+    
 
 <?php include('form_process.php'); ?>
 
@@ -27,10 +29,12 @@
       <input placeholder="Your Phone Number" type="text" name="phone" value="<?= $phone ?>" tabindex="3">
       <span class="error"><?= $phone_error ?></span>
     </fieldset>
-    <fieldset>
-      <input placeholder="Your Web Site starts with http://" type="text" name="url" value="<?= $url ?>" tabindex="4" >
+      
+  <fieldset>
+      <input placeholder="House your interested in" type="text" name="house" value="<?= $house ?>" tabindex="4" >
       <span class="error"><?= $url_error ?></span>
     </fieldset>
+  
     <fieldset>
       <textarea value="<?= $message ?>" name="message" tabindex="5">
       </textarea>
