@@ -51,8 +51,12 @@ unset($_SESSION['error']);
                                         <strong>REALTORS</strong>
                                     </a>
                                 </div><!-- LOGO -->
-                                <form>
+                                <form action="register.php" method="post">
                                     <h4>Login Form</h4>
+                                    
+                                    
+                                    
+                                    
                                     <div class="field">
                                         <input type="text" placeholder="Username" />
                                     </div>
