@@ -51,12 +51,8 @@ unset($_SESSION['error']);
                                         <strong>REALTORS</strong>
                                     </a>
                                 </div><!-- LOGO -->
-                                <form action="register.php" method="post">
-                                    <h4>Login Form</h4>
-                                    
-                                    
-                                    
-                                    
+                                <form>
+                                    <h4>Login Form</h4>                               
                                     <div class="field">
                                         <input type="text" placeholder="Username" />
                                     </div>
@@ -258,7 +254,7 @@ unset($_SESSION['error']);
                                         
                                         <?php
                                             session_start();
-                                            include('DBconnect.php');
+                                            include('configdb.php');
                                             if(isset($_POST['login']))
                                             {
                                             $email = trim($_POST['email']);

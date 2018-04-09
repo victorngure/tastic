@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('DBconnect.php');
+include('configdb.php');
 if(isset($_POST['submit']))
 {
 //whether the username is blank
