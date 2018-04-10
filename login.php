@@ -53,7 +53,7 @@
                                         <?php include("log.php") ?>
                                     </div>
                                     <div class="field">
-                                        <input type="submit" value="SEND NOW" class="flat-btn" />
+                                        <input name="submit" type="submit" value="SEND NOW" class="flat-btn" />
                                     </div>
                                 </form>
                                 <i>OR</i>
