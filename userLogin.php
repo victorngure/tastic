@@ -12,7 +12,7 @@
                                             if( $num_row ==1 )
                                             {
                                             $_SESSION['user_name']=$row['username'];
-                                                 header("Location: index.php");
+                                                 header("Location: indexUserLoggedIn.php.php");
                                                 $message = "You have successfully registered";
                                                 echo "<script type='text/javascript'>alert('$message');</script>";
                                             }
