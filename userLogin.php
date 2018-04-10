@@ -12,7 +12,9 @@
                                             if( $num_row ==1 )
                                             {
                                             $_SESSION['user_name']=$row['username'];
-                                            header("Location: contact.php");
+                                                 $message = "You have successfully logged in";
+                                                echo "<script type='text/javascript'>alert('$message');</script>";
+                                            header("Location: contact.html");
                                             exit;
                                             }
                                             else
