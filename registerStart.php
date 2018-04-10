@@ -52,19 +52,19 @@ unset($_SESSION['error']);
                                     </a>
                                 </div><!-- LOGO -->
                                 <form>
-                                    <h4>Login Form</h4>                               
-                                    <div class="field">
-                                        <input type="text" placeholder="Username" />
-                                    </div>
-                                    <div class="field">
-                                        <input type="password" placeholder="Password" />
-                                    </div>
-                                    <div class="field">
-                                        <?php include("log.php") ?>
-                                    </div>
-                                    <div class="field">
-                                        <input type="submit" value="SEND NOW" class="flat-btn" />
-                                    </div>
+                                    <h4>Login Form</h4> 
+                                        <div class="field">
+                                                <input name="email" type="text" id="email" placeholder="email"/>
+                                            </div>
+                                            <div class="field">
+                                                <input type="password" placeholder="Password" name="password" id="password"/>
+                                            </div>
+                                            <div class="field">
+                                                <p id="wrongPass" style="color: red"></p>
+                                            </div>
+                                            <div class="field">
+                                                <input type="submit" name="submit" value="Login" class="flat-btn"/>
+                                            </div>
                                 </form>
                                 <i>OR</i>
                                 <span>LOGIN WITH</span>
