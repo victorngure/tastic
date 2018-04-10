@@ -266,7 +266,7 @@ unset($_SESSION['error']);
                                             if( $num_row ==1 )
                                             {
                                             $_SESSION['user_name']=$row['username'];
-                                            header("Location: index.php");
+                                            header("Location: addListing.php");
                                             exit;
                                             }
                                             else
@@ -292,7 +292,7 @@ unset($_SESSION['error']);
                                 <div class="col-md-6">
                                     <div class="registration-sec">
                                         <h3>SIGNUP Form</h3>
-                                         <form action="reg.php" name="registration" method="post">
+                                         <form action="register.php" name="registration" method="post">
                                         <div class="field">
                                         <input type="text" placeholder="User Name" name="username" required/>
                                     </div>

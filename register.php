@@ -42,7 +42,7 @@ $_SESSION['error']['password'] = "Password is required.";
 //if the error exist, we will go to registration form
 if(isset($_SESSION['error']))
 {
-header("Location: index.php");
+header("Location: addListing.php");
 exit;
 }
 else
