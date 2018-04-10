@@ -241,7 +241,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <i class="fa fa-at"></i>
-                                                    <input name="email" type="email" placeholder="Email">
+                                                    <input name="email" type="text" placeholder="Email">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <i class="fa fa-pencil"></i>

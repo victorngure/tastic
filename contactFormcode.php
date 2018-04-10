@@ -67,7 +67,7 @@ $sentmail = mail($to,$subject,$message,$header);
 
 if($result2)
 {
-    //header("Location: contactUs.php");
+    header("Location: contactUs.php");
     $name = $email =  $message = '';
     $success = "Message sent, thank you for contacting us!";
 //    $message = "Thankyou. Your message was sent";
