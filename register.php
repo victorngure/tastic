@@ -67,7 +67,7 @@ $sentmail = mail($to,$subject,$message,$header);
 
 if($result2)
 {
-    header("Location: addListing.php");
+    header("Location: index.php");
     $message = "You have successfully registered";
 echo "<script type='text/javascript'>alert('$message');</script>";
   // echo '<script type="text/javascript">window.location.href="contact.html";</script>';

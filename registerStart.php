@@ -236,7 +236,7 @@ unset($_SESSION['error']);
                                             </a>
                                         </div><!-- LOGO -->
                                             <h4>Login Form</h4>
-                                            <form action="" method="post">                                    
+                                            <form action="userLogin.php" method="post">                                    
                                             <div class="field">
                                                 <input name="email" type="text" id="email" placeholder="email"/>
                                             </div>
@@ -252,31 +252,6 @@ unset($_SESSION['error']);
                                         </form>
                                         
                                         
-                                        <?php
-                                            session_start();
-                                            include('configdb.php');
-                                            if(isset($_POST['login']))
-                                            {
-                                            $email = trim($_POST['email']);
-                                            $password = trim($_POST['password']);
-                                            $query = "SELECT * FROM user WHERE email='$email' AND password='$password'";
-                                            $result = mysqli_query($mysqli,$query)or die(mysqli_error());
-                                            $num_row = mysqli_num_rows($result);
-                                            $row=mysqli_fetch_array($result);
-                                            if( $num_row ==1 )
-                                            {
-                                            $_SESSION['user_name']=$row['username'];
-                                            header("Location: addListing.php");
-                                            exit;
-                                            }
-                                            else
-                                            {
-                                            echo '<script type="text/javascript">
-                                                document.getElementById("wrongPass").innerHTML = " Username/password is incorrect. Kindly try login in again ";
-                                                </script>';
-                                            }
-                                            }
-                                        ?>
                                         
                                         
                                        
