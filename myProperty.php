@@ -1,8 +1,5 @@
 <?php
-//Start session
-session_start();
-?>
-<?php 
+include('auth.php');
 include('DBconnect.php');
 $propertyId="";
 if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['propertyId'] > 0)
@@ -199,15 +196,16 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                                 <div class="heading3">
                                                 <h3>Property Video </h3> 
                                                 </div>
-                                                <iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media alt="This property has no video"></iframe>';?>
+                                                <iframe height="400" width="100%" src="'.$propertyVideo.'" allowfullscreen frameborder="0" encrypted-media alt="This property has no video"></iframe></div></div>';?>
                                        </div>
-<!-- 
-                                        <div class="property-map">
-                                            <div class="heading3">
-                                                <h3>Find this property on the map </h3> 
-                                            </div>
-                                            <div id="propertyMap" ></div>
-                                        </div> -->
+                                       <div class="property-feature">
+                    
+                                            <?php 
+                                            echo '<a href="editProperty.php?propertyId='.$id.'"><input type="button" class="btn btn-default" value="EDIT THIS LISTING"></a> &emsp;';
+                                            echo '<a href="deleteProperty.php?proeprtyId='.$id.'"><input type="button" class="btn btn-danger" value="DELETE THIS LISTING"></a>&emsp;';
+                                            ?>
+                                       </div>
+                                        
 
                                     </div><!-- Blog Post -->
                                 </div><!-- Blog POst Sec -->
@@ -254,58 +252,11 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                                         </span>
                                         <span>
                                             <i class="fa fa-envelope"> </i> <?php echo $userEmail?>
-                                        </span>
-
-
-                                        <a href="agent.html"  title="" class="btn contact-agent">Find more</a>                                        
+                                        </span>                                       
                                     </div>
-                                </div><!-- Follow Widget -->       
-
-                                 <div class="send-email-to-agent">
-                                            <div class="comment-form">
-                                                <div class="heading3">
-                                                	<div class="search_widget widget">
-                                    <div class="heading2">
-                                        <h3>Contact Agent</h3>
-                                    </div>
-                                                     
-                                                </div>
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>
-                                                                <i class="fa fa-user"></i>
-                                                                <input type="text" placeholder="Name" style="color: black" required/>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label>
-                                                                <i class="fa fa-at"></i>
-                                                                <input type="text" placeholder="Email" style="color: black" required/>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label>
-                                                                <i class="fa fa-phone"></i>
-                                                                <input type="text" placeholder="Phone Number" style="color: black" required/>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <label>
-                                                                <i class="fa fa-pencil"></i>
-                                                                <textarea placeholder="Your Message" style="color: black">Hello, I found your listing on TASTIC REALTORS. Please send me more information about Tree Tops Apartments, Peponi Road, Peponi Road. Thank you.</textarea>
-                                                            </label>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <button type="submit" class="flat-btn">SEND MESSAGE</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>                         
+                                </div><!-- Follow Widget -->                                                                          
                             </aside>
                         </div>
-
                     </div>
                 </div>
             </div>

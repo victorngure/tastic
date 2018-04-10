@@ -22,6 +22,8 @@ session_start();
 
     <!-- REVOLUTION STYLE SHEETS -->
     <link rel="stylesheet" type="text/css" href="js/rs-plugin/css/settings.css">
+
+    <script src="https://use.fontawesome.com/a232a238e9.js"></script>
     <style type="text/css">
     .virtecla-form-search{
         background-image: url('nairobi4.jpg');
@@ -36,7 +38,7 @@ session_start();
         #map_canvas{
             display: none;
         }
-    }
+
     @media (max-width: 767px)  {        
         #map_canvas{
             display: none;
@@ -69,7 +71,7 @@ session_start();
                     </div><!-- LOGO -->
                     <div class="popup-client">
                         <span ><?php if(isset( $_SESSION['username'])) { echo '<a class="link" href="logout.php" style="color: white;"> Logout </a> '; } else 
-                         { echo '<a class="link" href="login.php"> Sign Up | Login </a>'; }?> </span>
+                         { echo '<a class="link" href="login.php" style="color: white;"><i class="fa fa-user"></i> /  Signup</a>'; }?> </span>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
                     <nav>
@@ -91,61 +93,85 @@ session_start();
                     <h3 class="fsearch-title">
                         <i class="fa fa-search"></i><span>SEARCH FOR PROPERTY</span>
                     </h3>
-                    <form action="http://htmldemo.kimarotec.net/Kwitara-Bootstrap-Real-Estate/html/dark/properties.html"  method="get" class="form-inline">   
+                    <form action="properties.php"  method="post" class="form-inline">   
                         <div class="search-form-content">
                             <div class="search-form-field">  
                                 <div class="form-group col-md-12">
                                     <div class="label-select">  
-                                        <select class="form-control" name="s_cat">
-                                            <option>Property Type</option>
-                                            <option>Apartment</option>
-                                            <option>House</option>
-                                            <option>Office Building</option>
-                                            <option>House</option>
-                                            <option>Villa</option>
-                                            <option>Developments</option>
-                                        </select>
+                                        <select class="form-control" name="value">
+                                            <option value="">Property Type</option>
+                                            <?php
+                                            include("DBconnect.php");
+                                            $query  = "SELECT DISTINCT propertyType FROM properties";
+                                            $result = mysqli_query($connection, $query);
+                                            if ($result) {
+                                                while($row = $result->fetch_assoc()) {  
+                                                    $propertyType = $row ['propertyType'];
+                                                    echo '<option value="'.$propertyType.'">'.$propertyType.'</option>';
+                                                }
+                                            }
+                                           ?> 
+                                        </select> 
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <div class="label-select"> 
-                                        <select class="form-control" name="s_statu">
-                                            <option>Property Status</option>
-                                            <option>For Sale</option>
-                                            <option>Open House</option>
-                                            <option>For Rent</option>
-                                            <option>For Sale</option>  
+                                        <select class="form-control" name="status">
+                                            <option value="">Property Status</option>
+                                            <?php
+                                            include("DBconnect.php");
+                                            $query  = "SELECT DISTINCT propertyStatus FROM properties";
+                                            $result = mysqli_query($connection, $query);
+                                            if ($result) {
+                                                while($row = $result->fetch_assoc()) {  
+                                                    $propertyStatus = $row ['propertyStatus'];
+                                                    echo '<option status="'.$propertyStatus.'">'.$propertyStatus.'</option>';
+                                                }
+                                            }
+                                            ?> 
                                         </select>
                                     </div>
                                 </div> 
                                 <div class="form-group col-md-12">
                                                         <div class="label-select">
-                                                            <select class="form-control" name="s_location">
-                                                                <option>All Locations</option>
-                                                                <option>Tokyo</option>
-                                                                <option>New Jersey</option>
-                                                                <option>New York</option>
-                                                                <option>Paris</option>
-                                                                <option>Marrakech</option>
-                                                                <option>lille</option>
+                                                            <select class="form-control" name="location">
+                                                                <option value="">All Locations</option>
+                                                                <?php
+                                                                include("DBconnect.php");
+                                                                $query  = "SELECT DISTINCT propertyLocation FROM properties";
+                                                                $result = mysqli_query($connection, $query);
+                                                                if ($result) {
+                                                                                        while($row = $result->fetch_assoc()) {  
+                                                                        $propertyLocation = $row ['propertyLocation'];
+                                                                        echo '<option status="'.$propertyLocation.'">'.$propertyLocation.'</option>';
+                                                                    }
+                                                                }
+                                                                ?> 
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <div class="label-select">
-                                                            <select class="form-control" name="s_sub_location"> 
-                                                                <option>All Sub-locations</option>
-                                                                <option>Central New York</option>
-                                                                <option>GreenVille</option>
-                                                                <option>Long Island</option>
-                                                                <option>New York City</option>
-                                                                <option>West Side</option>
+                                                            <select class="form-control" name="sub_location"> 
+                                                                <option value="">All Sub-locations</option>
+                                                                <?php
+                                                                include("DBconnect.php");
+                                                                $query  = "SELECT DISTINCT propertySublocation FROM properties";
+                                                                $result = mysqli_query($connection, $query);
+                                                                if ($result) {
+                                                                                        while($row = $result->fetch_assoc()) {  
+                                                                        $propertySublocation = $row ['propertySublocation'];
+                                                                        echo '<option status="'.$propertySublocation.'">'.$propertySublocation.'</option>';
+                                                                    }
+                                                                }
+                                                                ?> 
                                                             </select>
                                                         </div>
                                                     </div>
                                 <div class="form-group col-md-12">
                                     <span class="gprice-label">Price</span>
-                                    <input type="text" class="span2" value="" data-slider-min="0" 
+                                    <input type="text" class="span2" value="" 
+                                            data-slider-min="0" 
                                            data-slider-max="600" data-slider-step="5" 
                                            data-slider-value="[270,600]" id="price-range" >
                                 </div>                                        
@@ -173,7 +199,7 @@ session_start();
 // connect to the database
 include('DBconnect.php');
 
-$sql = "SELECT p.propertyId, p.propertyTitle, p.propertyPrice, p.propertyStatus, p.bedrooms, p.bathrooms, i1.image, i1.propertyId
+$sql = "SELECT p.propertyId, p.propertyTitle, p.propertyArea, p.propertyPrice, p.propertyStatus, p.bedrooms, p.bathrooms, i1.image, i1.propertyId
         FROM properties p
         INNER JOIN images i1
         ON p.propertyId = i1.propertyId
@@ -197,19 +223,21 @@ if ($result) {
         $status = $row ['propertyStatus'];
         $bedrooms = $row ['bedrooms'];
         $bathrooms = $row['bathrooms'];
+        $propertyArea =$row['propertyArea'];
         $image=$row ['image'];
                                         echo '<div class="col-md-4">';
-                                        echo'<div class="properties-box">';
+                                        echo '<div class="properties-box">';
                                         echo '<div class="properties-thumb">';
-                                        echo'<a href="property.php?propertyId=' . $id . '"><img src= "uploads/'.$image.'" width="100%" height="265"></a>'; 
+                                        echo '<a href="property.php?propertyId=' . $id . '"><img src= "uploads/'.$image.'" width="100%" height="265"></a>'; 
                                         echo '<span class="spn-status"> For ' . $status . '</span>';
                                         echo '<ul class="property-info">';                                   
                                         echo '<li class="li-rl"></li>';
-                                        echo '<li><i class="fa  fa-bed"></i><span>' .$bedrooms. '</span> </li>';                             
+                                        echo '<li><div style="font-size:1em; color:white"><i class="fa  fa-retweet"> </i> <span>'.$propertyArea.' m2</span></div></li>';
+                                        echo '<li><div style="font-size:1em; color:white"><i class="fa  fa-bed"></i><span> ' .$bedrooms. '</span> </div></li>';
                                         echo '<li class="li-rl"></li>';
-                                        echo '<li><i class="fa  fa-building"> </i> <span>' .$bathrooms. '</span></li>';
+                                        echo '<li><div style="font-size:1em; color:white"><i class="fa fa-shower" aria-hidden="true"></i> <span>' .$bathrooms. '</span></div></li>';
                                         echo '</ul>'; 
-                                        echo '<a class="proeprty-sh-more" href="property.php?propertyId=' . $id . '"><i class="fa fa-info-circle"> </i></a></div>';
+                                        echo '<a class="proeprty-sh-more" href="property.php?propertyId=' . $id . '"><i class="ti ti-share"> </i></a></div>';
                                         echo '<h3><a href="property.php?propertyId=' . $id . '">' .$name. '</a></h3>';
                                         echo '<span class="price"> KSh:' .$price. '</span> </div> </div>  ';
                                
