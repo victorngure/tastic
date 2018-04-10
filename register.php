@@ -42,7 +42,7 @@ $_SESSION['error']['password'] = "Password is required.";
 //if the error exist, we will go to registration form
 if(isset($_SESSION['error']))
 {
-header("Location: addListing.php");
+header("Location: index.php");
 exit;
 }
 else
@@ -65,13 +65,13 @@ $message .= "http://www.exampleDomain.com/confirm.php?passkey=$com_code";
 
 $sentmail = mail($to,$subject,$message,$header);
 
-if($sentmail)
+if($result2)
 {
-echo "Your Confirmation link Has Been Sent To Your Email Address.";
+echo "You've been successfilly registered.";
 }
 else
 {
-echo "Cannot send Confirmation link to your e-mail address";
+echo "Cannot register your e-mail address";
 }
 }
 }
