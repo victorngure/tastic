@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-<!-- Mirrored from htmldemo.kimarotec.net/Kwitara-Bootstrap-Real-Estate/html/dark/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Jan 2018 08:50:02 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,8 +112,7 @@
                                 <li><a href="index.php" title="">HOME</a></li>
                                 <li><a href="addListing.php" title="">ADD LISTING</a></li>
                                 <li><a href="myListings.php" title="">MY LISTINGS</a></li>
-                                <li><a href="contact.html" title="">CONTACT US</a></li>
-                        </ul>
+                                <li><a href="myProfle.php" title="">PROFILE</a></li>                        </ul>
                     </nav>
 
                 </div>

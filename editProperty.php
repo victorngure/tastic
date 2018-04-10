@@ -30,7 +30,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Listing</title>
+    <?php echo '<title>Edit Listing: '.$name.'</title>'; ?>
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
@@ -97,52 +97,13 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                 </div>
             </div>
         </div> 
-        <div class="container">
-        
-        
-            <div class="row bs-wizard" style="border-bottom:0;">
-                
-                <div class="col-xs-3 bs-wizard-step active">
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 1</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Property Information</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 2</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Contact Details</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 3</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Preview</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 4</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center"> Submit Property</div>
-                </div>
-            </div>
-        
-        
-        
-        
-        
-    </div>
 </div>      
 
         <section class="block" style="padding-top: 2px">
             <div class="container agnet-prop">
                 <div class="row">                                       
                         <div class="submit-content">
-                            <form id="new_post" action="newProperty.php" name="new_post" method="post" class="property-form" role="form" enctype="multipart/form-data">
+                            <form id="new_post" action="updateProperty.php" name="new_post" method="post" class="property-form" role="form" enctype="multipart/form-data">
                                 <div class="control-group">
                                     <div class="group-title">Property Description &amp; Price</div>
                                     <div class="group-container row">
@@ -342,7 +303,7 @@ return true;
                                         <div class="col-md-12">
                                             <div class="form-group s-prop-address">
                                                 <label for="address">Address&nbsp;&#42;</label>
-                                                <textarea id="address" class="form-control" name="address" rows="1" required=""></textarea>
+                                                <textarea id="address" class="form-control" name="address" rows="1"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -408,19 +369,12 @@ return true;
                                             $result = mysqli_query($connection,"SELECT * FROM property_features WHERE propertyId = $id") or die(mysqli_error($connection)); 
                                             while($row = $result->fetch_assoc()) {  
                                                     $feature = $row['feature'];
-                                                    foreach ($propertyFeatures as $value) {
-                                                        if (strpos($feature, $value) !== FALSE) { // Yoshi version
+                                                    if(in_array($feature, $propertyFeatures)){
                                                             echo '<div class="col-md-6">';
                                                             echo '<div class="form-group s-prop-property_feature_basement">';
-                                                            echo '<input type="checkbox" name="check_list[]" value="'.$feature.'" checked=""><label>'.$feature.'</label></div></div>';
-                                                        }
-                                                        else{
-                                                            echo '<div class="col-md-6">';
-                                                            echo '<div class="form-group s-prop-property_feature_basement">';
-                                                            echo '<input type="checkbox" name="check_list[]" value="'.$value.'"><label>'.$value.'</label></div></div>';
+                                                            echo '<input type="checkbox" name="check_list[]" value="'.$feature.'" checked="checked"><label>'.$feature.'</label></div></div>';
                                                         }
                                                     }
-                                            }
                                             ?> 
                                             </div>
                                         </div>
@@ -428,7 +382,7 @@ return true;
                                 </div>
                                 <div class="submit row" style="clear: both; margin-top: 25px;">
                                     <div class="col-md-12">
-                                        <input type="submit" class="btn btn-lg flat-btn" id="property_submit" value="Next">
+                                        <input type="submit" class="btn btn-lg flat-btn" id="property_submit" value="Submit">
                                         <label style="margin-top: 15px; margin-left: 10px;">  Your submission will be reviewed by Administrator before it can be published</label>
                                     </div>
                                 </div>

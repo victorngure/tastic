@@ -53,8 +53,7 @@ include('auth.php');
                                 <li><a href="index.php" title="">HOME</a></li>
                                 <li><a href="addListing.php" title="">ADD LISTING</a></li>
                                 <li><a href="myListings.php" title="">MY LISTINGS</a></li>
-                                <li><a href="contact.html" title="">CONTACT US</a></li>
-                        </ul>
+                                <li><a href="myProfle.php" title="">PROFILE</a></li>                        </ul>
                     </nav>
 
                 </div>

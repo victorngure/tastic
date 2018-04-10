@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible"content="ie=edge">
+ <title>Google Maps</title>
+ <style>
+   #map{
+      height:400px;
+      width:100%;
+	  }
+  </style>
+</head>
+<body>
+  <h1>Google Maps</h1>
+  <div id="map"></div>
+  <script>
+    function initMap(){
+    //map options
+    var options={
+    zoom:8,
+    center:{lat 1.2921° S, lng: 36.8219° E}
+}
+   //new map
+  var map= new google.maps.Map(document.getElementById('map'),options); 
+  
+  //listen for click on map
+  google.maps.event.addListener(map,'click',function(event){
+  //add marker
+    addMarker({coords:event.latlng});
+  });
+  
+  /*
+  //add marker
+  var marker = new google.maps.Marker({
+    position:{lat:-1.2833,lng:36.8167},
+	map:map,
+	icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+	});
+	
+	var infoWindow = new google.maps.InfoWindow({
+	  content: '<h1>Strathmore SU</h1>'
+	  });
+	  
+	  marker.addListener('click',function(){
+	    infoWindow.open(map, marker);
+	    });
+	  */
+	  
+	  //array of markers
+	   var markers =[
+	   {
+	    coords:{lat:-1.2833, lng:36.8219},
+	     iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+		 content:'<h1>Times Tower</h1>'
+		 },
+		{
+	    coords:{lat:1.3071° S, lng:36.8155° E},
+		content:'<h1>Strathmore SU</H1>'
+		},
+		{
+		 coords:{lat:1.2903° S, lng:36.8239° E}
+		 }
+	   ];
+	   
+	   //loop through markers
+	     for(var i= 0;i<markers.length;i++){
+		    //add marker
+	        addMarker(markers[i]);
+		   }
+		   
+	  //add marker function
+	  function addMarker(props){
+	   var marker = new google.maps.Marker({
+         position:props.coords,
+	     map:map,
+	    //icon:props.iconImage
+	 });
+	 
+	 //check for customicon
+	 if(props.iconImage){
+	    //set iconImage
+	    marker.setIcon(props.iconImage);
+		}
+		
+		//check content
+		  if(props.content){
+		    var infoWindow = new google.maps.InfoWindow({
+	          content:props.content
+	     });
+	    
+		marker.addListener('click',function(){
+	     infoWindow.open(map, marker);
+	  });
+	}
+   }
+  }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-2OZseb2yt_dLDf1xdvdw7r2tOVt9nio&callback=initMap">
+
+  </script>
+</body>
+</html>

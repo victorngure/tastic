@@ -202,7 +202,7 @@ if (isset($_GET['propertyId']) && is_numeric($_GET['propertyId']) && $_GET['prop
                     
                                             <?php 
                                             echo '<a href="editProperty.php?propertyId='.$id.'"><input type="button" class="btn btn-default" value="EDIT THIS LISTING"></a> &emsp;';
-                                            echo '<a href="deleteProperty.php?proeprtyId='.$id.'"><input type="button" class="btn btn-danger" value="DELETE THIS LISTING"></a>&emsp;';
+                                            echo '<a href="deleteProperty.php?propertyId='.$id.'"><input type="button" class="btn btn-danger" value="DELETE THIS LISTING"></a>&emsp;';
                                             ?>
                                        </div>
                                         

@@ -1,14 +1,27 @@
 <?php
 include('auth.php');
+include('DBconnect.php');
+$userId=$_SESSION['userId'];
+$result = mysqli_query($connection,"SELECT * FROM users WHERE userId = $userId") 
+or die(mysqli_error($connection)); 
+while ($rs=mysqli_fetch_assoc($result)) {
+    $userName = $rs['userName'];
+    $userEmail =$rs['userEmail'];
+    $userMobile1 =$rs['userMobile1'];
+    $userMobile2 =$rs['userMobile2'];
+    $facebook =$rs['facebook'];
+    $twitter =$rs['twitter'];
+    $youtube =$rs['youtube'];
+    $userPhoto = $rs['userPhoto'];
+}
 ?>
-
 <!DOCTYPE html>
 
 <!-- Mirrored from htmldemo.kimarotec.net/Kwitara-Bootstrap-Real-Estate/html/dark/submit.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Jan 2018 08:50:02 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tastic</title>
+    <?php echo '<title>'.$userName.'</title>';?>
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
@@ -37,7 +50,7 @@ include('auth.php');
             <div class="menu">
                 <div class="container">
                     <div class="logo">
-                        <a href="index.html" title="">
+                        <a href="index.php" title="">
                             <i class="fa fa-get-pocket"></i>
                             <span>Tastic</span>
                             <strong>REALTORS</strong>
@@ -54,7 +67,9 @@ include('auth.php');
                            <li><a href="index.php" title="">HOME</a></li>
                                 <li><a href="addListing.php" title="">ADD LISTING</a></li>
                                 <li><a href="myListings.php" title="">MY LISTINGS</a></li>
-                                <li><a href="myProfle.php" title="">PROFILE</a></li>                        </ul>
+                                <li><a href="myProfle.php" title="">PROFILE</a></li>  
+                                
+                        </ul>
                     </nav>
 
                 </div>
@@ -75,69 +90,19 @@ include('auth.php');
                 </div>
             </div>
         </div> 
-        <div class="container">
-        
-        
-            <div class="row bs-wizard" style="border-bottom:0;">
-                
-                <div class="col-xs-3 bs-wizard-step complete">
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 1</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Property Information</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 2</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Contact Details</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 3</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Preview</div>
-                </div>
-                
-                <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-                  <div class="text-center bs-wizard-stepnum"><strong>Step 4</strong></div>
-                  <div class="progress"><div class="progress-bar"></div></div>
-                  <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Submit Property</div>
-                </div>
-            </div>            
-    </div>
+       
 </div>      
         <section class="block"  style="padding-top: 2px">
             <div class="container agnet-prop">
                 <div class="row">                    
                         <div class="submit-content">
-                            <form id="profile_form" name="profile_form" class="form profile-form" action="updateProfile.php" enctype="multipart/form-data" method="post">
+                            <form id="profile_form" name="profile_form" class="form profile-form" action="updateProf.php" enctype="multipart/form-data" method="post">
                                 <div class="control-group">
                                     <div class="group-title">How to reach you</div>
                                     <div class="group-container row">                                       
                                         <div class="col-md-12">
                                             <div class="row">
-                                            <?php
-                                            include('DBconnect.php');
-                                            $userId=$_SESSION['userId'];
-                                            $result = mysqli_query($connection,"SELECT * FROM users WHERE userId = $userId") 
-                                            or die(mysqli_error($connection)); 
-                                            while ($rs=mysqli_fetch_assoc($result)) {
-                                                $userName = $rs['userName'];
-                                                $userEmail =$rs['userEmail'];
-                                                $userMobile1 =$rs['userMobile1'];
-                                                $userMobile2 =$rs['userMobile2'];
-                                                $facebook =$rs['facebook'];
-                                                $twitter =$rs['twitter'];
-                                                $youtube =$rs['youtube'];
-                                                $userPhoto = $rs['userPhoto'];
-                                            }
-                                            ?>
-
-                                                <div class="col-md-6">
+                                           <div class="col-md-6">
                                                     <div class="form-group s-profile-title">
                                                         <label for="title">Name&nbsp;*</label>
                                                         <?php echo '<input class="form-control" value="'.$userName.'" name="userName" required="" type="text">';?>
@@ -208,7 +173,7 @@ include('auth.php');
 
                                         <div class="col-md-12">
                                             <div class="submit">
-                                                <input class="btn flat-btn" id="profile_submit" value="Next" type="submit">
+                                                <input class="btn flat-btn" id="profile_submit" value="SUBMIT" type="submit">
                                             </div>
                                         </div>
                                     </div>

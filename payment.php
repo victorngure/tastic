@@ -1,3 +1,6 @@
+<?php
+include('auth.php');
+?>
 <!DOCTYPE html>
 
 <!-- Mirrored from htmldemo.kimarotec.net/Kwitara-Bootstrap-Real-Estate/html/dark/property.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Jan 2018 08:49:42 GMT -->
@@ -55,9 +58,13 @@
             <div class="container">
                 <div class="heading4">
                     <h2>Payment Module Coming Soon!</h2>
+                    <img src="lipaMpesa.jpg">
                 </div>
             </div>
+            
         </section>
+        <a href="index.php"><input class="btn flat-btn" id="profile_submit" value="FINISH" type="submit"></a>
+        <
     
  <footer>
             <section class="top-line">

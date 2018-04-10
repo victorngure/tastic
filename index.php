@@ -71,7 +71,7 @@ session_start();
                     </div><!-- LOGO -->
                     <div class="popup-client">
                         <span ><?php if(isset( $_SESSION['username'])) { echo '<a class="link" href="logout.php" style="color: white;"> Logout </a> '; } else 
-                         { echo '<a class="link" href="registerStart.php" style="color: white;"><i class="fa fa-user"></i> /  Signup</a>'; }?> </span>
+                         { echo '<a class="link" href="login.php" style="color: white;"><i class="fa fa-user"></i> /  Signup</a>'; }?> </span>
                     </div>
                     <span class="menu-toggle"><i class="fa fa-bars"></i></span>
                     <nav>
@@ -79,7 +79,7 @@ session_start();
                                 <li><a href="index.php" title="">HOME</a></li>
                                 <li><a href="addListing.php" title="">ADD LISTING</a></li>
                                 <li><a href="myListings.php" title="">MY LISTINGS</a></li>
-                                <li><a href="contactUs.php" title="">CONTACT US</a></li>
+                                <li><a href="myProfile.php" title="">PROFILE</a></li>
                         </ul>
                     </nav>
 
@@ -209,8 +209,7 @@ $sql = "SELECT p.propertyId, p.propertyTitle, p.propertyArea, p.propertyPrice, p
         GROUP BY propertyId
         ) i2
         ON i1.propertyId = i2.propertyId AND
-        i1.imageId = i2.min_imageId
-        LIMIT 6";
+        i1.imageId = i2.min_imageId";
 
 
 $result = $connection->query($sql);
