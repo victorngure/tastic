@@ -68,12 +68,14 @@ $sentmail = mail($to,$subject,$message,$header);
 if($result2)
 {
     header("Location: contact.html");
+    exit;
     echo "<script type='text/javascript'>alert("You have been successfully registered.");</script>";
 
 }
 else
 {
      header("Location: index.php");
+    exit;
     echo "<script type='text/javascript'>alert("Cannot register your email address. Try again. ");</script>";
 
 }
