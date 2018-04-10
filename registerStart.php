@@ -292,20 +292,25 @@ unset($_SESSION['error']);
                                 <div class="col-md-6">
                                     <div class="registration-sec">
                                         <h3>SIGNUP Form</h3>
-                                         <form action="register.php" name="registration" method="post">
-                                        <div class="field">
-                                        <input type="text" placeholder="User Name" name="username" required/>
-                                    </div>
-                                    <div class="field">
-                                        <input type="text" placeholder="Your Email" name="email" required/>
-                                    </div>
-                                    <div class="field">
-                                        <input type="password" placeholder="Type Password" name="password" required/>
-                                    </div> 
-                                            <label>
-                                                <input type="checkbox" /> By Clicking on this You are agree with our <a href="#" title="">Terms & Condition</a>
-                                            </label>
-                                            <input type="submit" value="Singup" class="flat-btn" />
+                                         <form action="register.php" method="post" >
+                                                <p>
+                                                <label for="username">User Name:</label>
+                                                <input name="username" type="text" id="username" size="30"/>
+                                                </p>
+                                                <p>
+                                                <label for="email">E-mail:</label>
+                                                <input name="email" type="text" id="email" size="30"/>
+                                                </p>
+                                                <p>
+                                                <label for="password">Password:</label>
+                                                <input name="password" type="password" id="password" size="30 "/>
+                                                </p>
+                                                 <label>
+                                                 <input type="checkbox" /> By Clicking on this You are agree with our <a href="#" title="">Terms & Condition</a>
+                                                </label>
+                                                <p>
+                                                <input name="submit" type="submit" value="Submit" class="flat-btn"/>
+                                                </p>
                                         </form>
                                     </div><!-- Registration sec -->
                                 </div>
