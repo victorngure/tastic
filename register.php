@@ -67,16 +67,18 @@ $sentmail = mail($to,$subject,$message,$header);
 
 if($result2)
 {
-   echo '<script type="text/javascript">window.location.href="contact.html";</script>';
-   die();
-    echo "<script type='text/javascript'>alert("You have been successfully registered.");</script>";
+    header("Location: index.php");
+  // echo '<script type="text/javascript">window.location.href="contact.html";</script>';
+  // die();
+   // echo "<script type='text/javascript'>alert("You have been successfully registered.");</script>";
 
 }
 else
 {
-     echo '<script type="text/javascript">window.location.href="contact.html";</script>';
-   die();
-    echo "<script type='text/javascript'>alert("Cannot register your email address. Try again. ");</script>";
+    header("Location: index.php");
+    // echo '<script type="text/javascript">window.location.href="contact.html";</script>';
+   //die();
+   // echo "<script type='text/javascript'>alert("Cannot register your email address. Try again. ");</script>";
 
 }
 }
