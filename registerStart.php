@@ -247,7 +247,7 @@ unset($_SESSION['error']);
                                                 <p id="wrongPass" style="color: red"></p>
                                             </div>
                                             <div class="field">
-                                                <input type="submit" name="login" value="Login" class="flat-btn"/>
+                                                <input type="submit" name="submit" value="Login" class="flat-btn"/>
                                             </div>
                                         </form>
                                         
